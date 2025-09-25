@@ -1,0 +1,32 @@
+// Credit Card payment
+class CreditCardPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Credit Card.");
+    }
+}
+
+// PayPal payment
+class PayPalPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using PayPal.");
+    }
+}
+
+// Cash payment
+class CashPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " in Cash.");
+    }
+}
+public class PaymentSystem {
+    public static void main(String[] args) {
+        // Polymorphism: interface reference, different objects
+        Payment p1 = new CreditCardPayment();
+        Payment p2 = new PayPalPayment();
+        Payment p3 = new CashPayment();
+
+        p1.pay(2500.0);   // Credit Card
+        p2.pay(1200.5);   // PayPal
+        p3.pay(500.0);    // Cash
+    }
+}
