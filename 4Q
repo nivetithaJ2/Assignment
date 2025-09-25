@@ -1,0 +1,55 @@
+package packageA;
+
+public class Employee {
+    // Private field (only within Employee class)
+    private String name;
+
+    // Default field (only within packageA)
+    int empId;
+
+    // Protected field (packageA + subclasses in other packages)
+    protected double salary;
+
+    // Public field (accessible everywhere)
+    public String department;
+
+    // Constructor
+    public Employee(String name, int empId, double salary, String department) {
+        this.name = name;
+        this.empId = empId;
+        this.salary = salary;
+        this.department = department;
+    }
+
+    // Public method to safely access private field
+    public String getName() {
+        return name;
+    }
+}
+package packageB;
+
+// Import Employee class from packageA
+import packageA.Employee;
+
+public class Manager extends Employee {
+    public Manager(String name, int empId, double salary, String department) {
+        // Call Employee constructor
+        super(name, empId, salary, department);
+    }
+
+    public void displayDetails() {
+        // System.out.println(name);   
+        // System.out.println(empId);  
+        System.out.println("Salary: " + salary); 
+        System.out.println("Department: " + department); 
+        System.out.println("Name: " + getName()); 
+    }
+}
+package packageB;
+
+public class Main {
+    public static void main(String[] args) {
+        Manager mgr = new Manager("Alice", 101, 75000, "HR");
+        mgr.displayDetails();
+    }
+}
